@@ -2,6 +2,7 @@ import csv
 import os
 from datetime import datetime
 
+#editar categorias
 class ExpenseTracker:
     ALLOWED_CATEGORIES = ["compras", "escola", "coisas"]
 
@@ -37,12 +38,12 @@ class ExpenseTracker:
         print("Despesas:")
         with open(self.file_path, mode='r') as file:
             reader = csv.DictReader(file)
-            
-            # Verifica se o arquivo está vazio
+
+            # Verifica se o arquivo está vazio (senão cria)
             if not reader.fieldnames:
-                print("Nenhuma despesa registrada.")
+                print("Nenhuma despesa registada.")
                 return
-            
+
             for row in reader:
                 if month is None or (month and row['Date'].split('-')[1] + '-' + row['Date'].split('-')[2] == month):
                     # Adiciona verificação para evitar KeyError
@@ -62,7 +63,7 @@ while True:
     choice = input("Escolha uma opção (1/2/3): ")
 
     if choice == '1':
-        category = input("Digite a categoria da despesa (compras/escola/coisas): ")
+        category = input("Digite a categoria da sua despesa (compras/escola/coisas): ")
         amount = float(input("Digite o valor da despesa em euros: "))
         description = input("Digite uma descrição para a despesa: ")
         tracker.add_expense(category, amount, description)
@@ -70,7 +71,7 @@ while True:
         month = input("Digite o mês para visualizar as despesas (formato MM-YYYY): ")
         tracker.view_expenses(month)
     elif choice == '3':
-        print("Saindo...")
+        print("A sair...")
         break
     else:
         print("Opção inválida. Tente novamente.")
