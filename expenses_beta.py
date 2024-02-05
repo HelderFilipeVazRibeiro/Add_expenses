@@ -4,7 +4,7 @@ from datetime import datetime
 
 #editar categorias
 class ExpenseTracker:
-    ALLOWED_CATEGORIES = ["compras", "escola", "coisas"]
+    Cat_despesas = ["compras", "escola", "coisas"]
 
     def __init__(self):
         self.expenses = {}
@@ -20,11 +20,11 @@ class ExpenseTracker:
     def create_csv_file(self):
         with open(self.file_path, mode='w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Date", "Category", "Amount (€)", "Description"])
+            writer.writerow(["Data", "Categoria", "Valor (€)", "Descrição"])
 
-    def add_expense(self, category, amount, description):
-        if category.lower() not in self.ALLOWED_CATEGORIES:
-            print("Categoria inválida. Escolha entre:", self.ALLOWED_CATEGORIES)
+    def add_despesas(self, category, amount, description):
+        if category.lower() not in self.Cat_despesas:
+            print("Categoria inválida. Escolha entre:", self.Cat_despesas)
             return
 
         date_today = datetime.now().strftime("%d-%m-%Y")
@@ -34,7 +34,7 @@ class ExpenseTracker:
 
         print(f"Despesa de {amount:.2f} € adicionada à categoria {category} em {date_today}.")
 
-    def view_expenses(self, month=None):
+    def ver_despesas(self, month=None):
         print("Despesas:")
         with open(self.file_path, mode='r') as file:
             reader = csv.DictReader(file)
@@ -66,12 +66,15 @@ while True:
         category = input("Digite a categoria da sua despesa (compras/escola/coisas): ")
         amount = float(input("Digite o valor da despesa em euros: "))
         description = input("Digite uma descrição para a despesa: ")
-        tracker.add_expense(category, amount, description)
+        tracker.add_despesas(category, amount, description)
+        
     elif choice == '2':
         month = input("Digite o mês para visualizar as despesas (formato MM-YYYY): ")
-        tracker.view_expenses(month)
+        tracker.ver_despesas(month)
+        
     elif choice == '3':
         print("A sair...")
         break
+    
     else:
         print("Opção inválida. Tente novamente.")
