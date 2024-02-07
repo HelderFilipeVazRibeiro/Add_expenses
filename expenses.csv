@@ -1,5 +1,4 @@
-Date,Category,Amount (€),Description
-11-01-2024,compras,10.00 €,teste descrição
-11-01-2024,escola,100.00 €,teste 02
-12-01-2024,compras,10.00 €,teste_03
-12-01-2024,compras,100.00 €,teste_04
+Data,Categoria,Valor (€),Descrição
+31-01-2024,compras,100.00 €,compra_teste_01
+31-01-2024,escola,200.00 €,escola_teste_01
+31-01-2024,coisas,320.00 €,coisas_teste_01
